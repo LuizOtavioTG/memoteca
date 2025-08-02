@@ -11,11 +11,10 @@ import { PensamentoService } from 'src/app/services/pensamento.service';
 export class EditarPensamentoComponent implements OnInit {
 
   pensamento: Pensamento = {
-    id: 0,
     conteudo: '',
     autoria: '',
     modelo: ''
-  }
+  } as Pensamento;
 
   constructor(
     private service: PensamentoService,
@@ -24,9 +23,16 @@ export class EditarPensamentoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')
-    this.service.buscarPorId(parseInt(id!)).subscribe((pensamento) => {
-      this.pensamento = pensamento
+    this.route.paramMap.subscribe((params) => {
+      const id = Number(params.get('id'));
+      if (isNaN(id)) {
+        this.router.navigate(['/listarPensamento']);
+        return;
+      }
+
+      this.service.buscarPorId(id).subscribe((pensamento) => {
+        this.pensamento = pensamento;
+      });
     })
   }
 

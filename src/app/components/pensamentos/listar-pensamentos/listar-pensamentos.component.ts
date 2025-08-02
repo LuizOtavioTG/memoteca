@@ -9,7 +9,7 @@ import { PensamentoService } from 'src/app/services/pensamento.service';
 })
 export class ListarPensamentosComponent implements OnInit {
 
-  listaPensamentos!: Pensamento[] 
+  listaPensamentos: Pensamento[] = [];
   constructor(private pensamentoService: PensamentoService) { }
 
   ngOnInit(): void {
