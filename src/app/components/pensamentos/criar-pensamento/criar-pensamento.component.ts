@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Pensamento } from 'src/app/interfaces/pensamento';
 import { PensamentoService } from 'src/app/services/pensamento.service';
@@ -16,12 +17,20 @@ export class CriarPensamentoComponent implements OnInit {
     modelo: ''
   }
 
+  criarPensamentoForm!: FormGroup;
+
   constructor(
     private pensamentoService: PensamentoService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.criarPensamentoForm = this.fb.group({
+      conteudo: ['Formulario reativo'],
+      autoria: [''],
+      modelo: ['modelo1']
+    })
   }
 
   criarPensamento() {
