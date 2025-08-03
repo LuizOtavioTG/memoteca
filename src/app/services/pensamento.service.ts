@@ -14,8 +14,8 @@ export class PensamentoService {
   listar(): Observable<Pensamento[]>{
     return this.http.get<Pensamento[]>(this.API)
   }
-  criar(pensamento: Pensamento): Observable<Pensamento[]>{
-    return this.http.post<Pensamento[]>(this.API, pensamento)
+  criar(pensamento: Pensamento): Observable<Pensamento>{
+    return this.http.post<Pensamento>(this.API, pensamento)
   }
   editar(pensamento: Pensamento): Observable<Pensamento> {
     const url = `${this.API}/${pensamento.id}`
