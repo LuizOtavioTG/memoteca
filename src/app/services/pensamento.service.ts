@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Pensamento } from '../interfaces/pensamento';
 import { Observable } from 'rxjs';
 
@@ -8,18 +8,26 @@ import { Observable } from 'rxjs';
 })
 export class PensamentoService {
 
-  private readonly API = "http://localhost:3001/pensamentos" 
+  private readonly API = "http://localhost:3001/pensamentos"
   constructor(private http: HttpClient) { }
 
-  listar(): Observable<Pensamento[]>{
-    return this.http.get<Pensamento[]>(this.API)
+  listar(pageNumb: number): Observable<Pensamento[]> {
+    //CONCATENANDO VALORES NA URL
+    //return this.http.get<Pensamento[]>(`${this.API}?_page=${pageNumb}&_limit=6`)
+
+    //UTILIZANDO HTTPPARAMS
+    const limitItens = 6;
+    let params = new HttpParams()
+      .set("_page", pageNumb)
+      .set("_limit", limitItens)
+      return this.http.get<Pensamento[]>(this.API, {params: params})
   }
-  criar(pensamento: Pensamento): Observable<Pensamento>{
+  criar(pensamento: Pensamento): Observable<Pensamento> {
     return this.http.post<Pensamento>(this.API, pensamento)
   }
   editar(pensamento: Pensamento): Observable<Pensamento> {
     const url = `${this.API}/${pensamento.id}`
-    return this.http.put<Pensamento>(url, pensamento )
+    return this.http.put<Pensamento>(url, pensamento)
   }
   excluir(id: number): Observable<Pensamento> {
     const url = `${this.API}/${id}`
