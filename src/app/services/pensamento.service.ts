@@ -11,7 +11,7 @@ export class PensamentoService {
   private readonly API = "http://localhost:3001/pensamentos"
   constructor(private http: HttpClient) { }
 
-  listar(pageNumb: number): Observable<Pensamento[]> {
+  listar(pageNumb: number, filtro: string): Observable<Pensamento[]> {
     //CONCATENANDO VALORES NA URL
     //return this.http.get<Pensamento[]>(`${this.API}?_page=${pageNumb}&_limit=6`)
 
@@ -20,6 +20,10 @@ export class PensamentoService {
     let params = new HttpParams()
       .set("_page", pageNumb)
       .set("_limit", limitItens)
+    
+      if(filtro.trim().length > 2){
+        params = params.set("q",filtro)
+      }
       return this.http.get<Pensamento[]>(this.API, {params: params})
   }
   criar(pensamento: Pensamento): Observable<Pensamento> {
