@@ -5,16 +5,23 @@
   <form [formGroup]="criarPensamentoForm">
     <label for="pensamento">Pensamento</label>
     <input type="textarea" class="input" id="pensamento" formControlName="conteudo" placeholder="Digite o pensamento">
-    <div class="mensagem__erro" *ngIf="criarPensamentoForm.get('conteudo')?.errors && criarPensamentoForm.get('conteudo')?.touched">
+    <div class="mensagem__erro"
+      *ngIf="criarPensamentoForm.get('conteudo')?.errors && criarPensamentoForm.get('conteudo')?.touched">
       Pensamento é obrigatório!
     </div>
     <label for="autoria">Autoria ou fonte</label>
     <input type="text" class="input" id="autoria" formControlName="autoria" placeholder="Digite a autoria ou fonte">
-    <div class="mensagem__erro" *ngIf="criarPensamentoForm.get('autoria')?.errors?.['required'] && criarPensamentoForm.get('autoria')?.touched">
+    <div class="mensagem__erro"
+      *ngIf="criarPensamentoForm.get('autoria')?.errors?.['required'] && criarPensamentoForm.get('autoria')?.touched">
       Autoria é obrigatório!
     </div>
-    <div class="mensagem__erro" *ngIf="criarPensamentoForm.get('autoria')?.errors?.['minlength'] && criarPensamentoForm.get('autoria')?.touched">
+    <div class="mensagem__erro"
+      *ngIf="criarPensamentoForm.get('autoria')?.errors?.['minlength'] && criarPensamentoForm.get('autoria')?.touched">
       Autoria é precisa de no mínimo {{minLengthAutoria}} digitos.
+    </div>
+    <div class="mensagem__erro"
+      *ngIf="criarPensamentoForm.get('autoria')?.errors?.['minusculo'] && criarPensamentoForm.get('autoria')?.touched">
+      Esse campo aceita apenas letras minúsculas
     </div>
 
     <label for="modelo">Selecione o modelo do card:</label>
@@ -68,11 +75,8 @@
       </div>
     </div>
     <div class="acoes">
-      <button 
-      (click)="criarPensamento()"
-      [disabled]="!criarPensamentoForm.valid"
-      [ngClass]="habilitarbotao()"
-      >Salvar</button>
+      <button (click)="criarPensamento()" [disabled]="!criarPensamentoForm.valid"
+        [ngClass]="habilitarbotao()">Salvar</button>
       <button (click)="cancelar()" class="botao">Cancelar</button>
     </div>
   </form>

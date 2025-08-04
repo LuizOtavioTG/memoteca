@@ -21,6 +21,10 @@
       *ngIf="editarPensamentoForm.get('autoria')?.errors?.['minlength'] && editarPensamentoForm.get('autoria')?.touched">
         Autoria precisa ter no mínimo {{minLengthAutoria}} caracteres!
     </div>
+     <div class="mensagem__erro"
+      *ngIf="editarPensamentoForm.get('autoria')?.errors?.['minusculo'] && editarPensamentoForm.get('autoria')?.touched">
+      Esse campo aceita apenas letras minúsculas
+    </div>
     <label for="modelo">Selecione o modelo do card:</label>
     <div class="container-radio">
       <div class="radio-modelo">
