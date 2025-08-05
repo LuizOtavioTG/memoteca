@@ -33,7 +33,8 @@ export class EditarPensamentoComponent implements OnInit {
         Validators.minLength(this.minLengthAutoria),
         minusculoValidator
       ])],
-      modelo: ['']
+      modelo: [''],
+      favorito: [false]
     });
 
 
@@ -43,7 +44,6 @@ export class EditarPensamentoComponent implements OnInit {
         this.router.navigate(['/listarPensamento']);
         return;
       }
-
       this.service.buscarPorId(id).subscribe((pensamento) => {
         this.editarPensamentoForm.patchValue(pensamento);
       });

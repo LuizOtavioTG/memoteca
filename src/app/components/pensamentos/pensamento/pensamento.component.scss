@@ -3,18 +3,27 @@
   justify-content: flex-end
 }
 
-.botao-excluir {
+.botao-editar,
+.botao-excluir,
+.botao-favorito {
   border: none;
   cursor: pointer;
-  margin-left: 5px;
-  margin-top: 10px;
+  margin-right: 5px;
+  margin-top: 15px;
 }
 
-.botao-editar {
-  border: none;
-  cursor: pointer;
-  margin-right: 10px;
-  margin-top: 10px;
+.material-icons {
+  color: #38488E;
+  font-size: 37px
+}
+.material-symbols-outlined{
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 24;
+  color: #38488E;
+  font-size: 37px;
 }
 
 .pensamento {
@@ -57,6 +66,7 @@
     width: 100%;
   }
 }
+
 @media screen and (max-width: 426px) {
   .pensamento-p {
     width: 100%;
